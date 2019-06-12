@@ -1,0 +1,6 @@
+{
+  "root": "buid/",
+  "routes": {
+    "/**": "index.html"
+  }
+}
