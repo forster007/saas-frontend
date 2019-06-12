@@ -1,29 +1,63 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import ZabbixSwitcher from '../../components/ZabbixSwitcher';
-import { Container } from './styles';
+import ZabbixesActions from '../../store/ducks/zabbixes';
+
+import Companys from '../../components/Companys';
+import Groups from '../../components/Groups';
+import Header from '../../components/Header';
+import MenuLeft from '../../components/MenuLeft';
+
+import { Container, Content, Wrapper } from './styles';
 
 class Main extends Component {
+  static propTypes = {
+    getZabbixesRequest: PropTypes.func.isRequired,
+  };
+
+  state = {
+    contentHeight: window.innerHeight,
+  };
+
   componentDidMount() {
-    // api.TESTE('/teste');
+    window.addEventListener('resize', this.handleResize);
+
+    const { getZabbixesRequest } = this.props;
+    getZabbixesRequest();
+    this.handleResize();
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState({ contentHeight: window.innerHeight });
+  };
+
   render() {
+    const { contentHeight } = this.state;
+
     return (
       <Container>
-        <ZabbixSwitcher />
+        <Header />
+        <Content height={contentHeight}>
+          <MenuLeft />
+          <Wrapper>
+            <Companys />
+            <Groups />
+          </Wrapper>
+        </Content>
       </Container>
     );
   }
 }
 
-const mapStateToProps = null;
-
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...ZabbixesActions }, dispatch);
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Main);
