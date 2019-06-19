@@ -31,16 +31,18 @@ class Groups extends Component {
     return (
       <Container>
         <TitleText>Grupos dos Zabbixes</TitleText>
-        {zabbixes.data.map(zabbix => (
-          <Wrapper>
+        {zabbixes.data.map(({ id, zbx_groups, zbx_name }) => (
+          <Wrapper key={id}>
             <WrapperTitle>
               <FontAwesomeIcon icon={faArrowRight} />
               {' '}
-              {zabbix.zbx_name}
+              {zbx_name}
             </WrapperTitle>
             <WrapperContent>
-              {zabbix.zbx_groups.map(group => (
-                <Company key={group.groupid}>{group.name}</Company>
+              {zbx_groups.map(({ groupid, maxTriggerPriority, name }) => (
+                <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
+                  <span>{name}</span>
+                </Company>
               ))}
             </WrapperContent>
           </Wrapper>

@@ -1,4 +1,7 @@
+import MUIDataTable from 'mui-datatables';
 import styled from 'styled-components';
+
+const severities = ['#97AAB3', '#7499FF', '#FFC859', '#FFA059', '#E97659', '#E45959'];
 
 export const Container = styled.div`
   flex-direction: row;
@@ -9,6 +12,22 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
+  position: fixed;
+`;
+
+export const Priority = styled.span`
+  align-items: center;
+  background-color: ${props => severities[props.priority]};
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  width: 100px;
+`;
+
+export const Table = styled(MUIDataTable)`
+  border: 1px solid #ddd;
+  margin: 0 30px 20px 10px;
 `;
 
 export const Wrapper = styled.div`
@@ -19,4 +38,6 @@ export const Wrapper = styled.div`
   margin-left: 200px;
   margin-top: 50px;
   padding: 10px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;

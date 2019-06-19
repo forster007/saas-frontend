@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+const severities = ['#97AAB3', '#7499FF', '#FFC859', '#FFA059', '#E97659', '#E45959'];
+
 export const Company = styled.div`
   align-items: center;
   background-color: #fff;
   border: 1px solid #ddd;
+  border-left: 5px solid ${props => severities[props.maxTriggerPriority]};
   color: #000;
   cursor: pointer;
   display: flex;
@@ -11,6 +14,14 @@ export const Company = styled.div`
   height: 40px;
   margin: 0 10px 10px 0;
   padding: 0 10px;
+  width: 19%;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
 `;
 
 export const Container = styled.div`
@@ -27,7 +38,7 @@ export const TitleText = styled.span`
 `;
 
 export const Wrapper = styled.div`
-  align-content: flex-start;
+  align-content: stretch;
   display: flex;
   flex-direction: column;
   margin-top: 10px;
@@ -39,7 +50,8 @@ export const WrapperContent = styled.div`
   flex-wrap: wrap;
   margin: 15px 0;
   max-height: 200px;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 export const WrapperTitle = styled.span`

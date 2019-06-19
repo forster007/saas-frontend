@@ -21,11 +21,13 @@ const create = () => {
 
   const SIGNIN = obj => api.post('/sessions', obj);
   const STOREZABBIX = obj => api.post('/zabbixes', obj);
+  const TRIGGERS = obj => api.get('/triggers', obj);
   const ZABBIXES = obj => api.get('/zabbixes', obj);
 
   return {
     SIGNIN,
     STOREZABBIX,
+    TRIGGERS,
     ZABBIXES,
   };
 };
