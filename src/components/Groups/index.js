@@ -25,28 +25,54 @@ class Groups extends Component {
 
   state = {};
 
+  renderContent = () => {
+    const { zabbixes } = this.props;
+    if (zabbixes.activeZabbix) {
+      return (
+        <Wrapper>
+          <WrapperTitle>
+            <FontAwesomeIcon icon={faArrowRight} />
+            {' '}
+            {zabbixes.activeZabbix.zbx_name}
+          </WrapperTitle>
+          <WrapperContent>
+            {zabbixes.activeZabbix.zbx_groups.map(({ groupid, maxTriggerPriority, name }) => (
+              <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
+                <span>{name}</span>
+              </Company>
+            ))}
+          </WrapperContent>
+        </Wrapper>
+      );
+    }
+
+    return zabbixes.data.map(({ id, zbx_groups, zbx_name }) => (
+      <Wrapper key={id}>
+        <WrapperTitle>
+          <FontAwesomeIcon icon={faArrowRight} />
+          {' '}
+          {zbx_name}
+        </WrapperTitle>
+        <WrapperContent>
+          {zbx_groups.map(({ groupid, maxTriggerPriority, name }) => (
+            <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
+              <span>{name}</span>
+            </Company>
+          ))}
+        </WrapperContent>
+      </Wrapper>
+    ));
+  };
+
   render() {
     const { zabbixes } = this.props;
 
     return (
       <Container>
-        <TitleText>Grupos dos Zabbixes</TitleText>
-        {zabbixes.data.map(({ id, zbx_groups, zbx_name }) => (
-          <Wrapper key={id}>
-            <WrapperTitle>
-              <FontAwesomeIcon icon={faArrowRight} />
-              {' '}
-              {zbx_name}
-            </WrapperTitle>
-            <WrapperContent>
-              {zbx_groups.map(({ groupid, maxTriggerPriority, name }) => (
-                <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
-                  <span>{name}</span>
-                </Company>
-              ))}
-            </WrapperContent>
-          </Wrapper>
-        ))}
+        <TitleText>
+          {zabbixes.activeZabbix ? 'Grupos do Zabbix Ativo' : 'Grupos dos Zabbixes'}
+        </TitleText>
+        {this.renderContent()}
       </Container>
     );
   }

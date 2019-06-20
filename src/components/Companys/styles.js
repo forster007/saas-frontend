@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
-export const Company = styled.div`
+export const Company = styled.button`
   align-items: center;
   background-color: #fff;
   border: 1px solid #ddd;
   color: #000;
   cursor: pointer;
   display: flex;
+  font-size: 14px;
   height: 40px;
   margin: 0 10px 10px 0;
   padding: 0 10px;
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   padding: 10px 10px;
   width: 100%;
 `;

@@ -11,6 +11,7 @@ import {
 
 class Companys extends Component {
   static propTypes = {
+    selectZabbix: PropTypes.func.isRequired,
     zabbixes: PropTypes.shape({
       data: PropTypes.arrayOf(
         PropTypes.shape({
@@ -23,6 +24,11 @@ class Companys extends Component {
 
   state = {};
 
+  handleZabbixSelect = (zabbix) => {
+    const { selectZabbix } = this.props;
+    selectZabbix(zabbix);
+  };
+
   render() {
     const { zabbixes } = this.props;
     return (
@@ -30,7 +36,9 @@ class Companys extends Component {
         <TitleText>Zabbixes Cadastrados</TitleText>
         <Wrapper>
           {zabbixes.data.map(zabbix => (
-            <Company key={zabbix.id}>{zabbix.zbx_name}</Company>
+            <Company key={zabbix.id} onClick={() => this.handleZabbixSelect(zabbix)}>
+              {zabbix.zbx_name}
+            </Company>
           ))}
         </Wrapper>
       </Container>

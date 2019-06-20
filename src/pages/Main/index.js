@@ -13,7 +13,7 @@ import Header from '../../components/Header';
 import MenuLeft from '../../components/MenuLeft';
 
 import {
-  Container, Content, Table, Wrapper,
+  Container, Content, DataTable, Wrapper,
 } from './styles';
 
 class Main extends Component {
@@ -61,8 +61,7 @@ class Main extends Component {
 
   render() {
     const { contentHeight, options } = this.state;
-
-    const { triggers } = this.props;
+    const { triggers, zabbixes } = this.props;
 
     return (
       <Container>
@@ -73,9 +72,9 @@ class Main extends Component {
             <Companys />
             <Groups />
             <MuiThemeProvider theme={this.getMuiTheme()}>
-              <Table
+              <DataTable
                 columns={triggers.columns}
-                data={triggers.data}
+                data={zabbixes.activeZabbix ? zabbixes.activeZabbix.zbx_triggers : triggers.data}
                 options={options}
                 title="Zabbix Triggers"
               />

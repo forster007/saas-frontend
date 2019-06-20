@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const severities = ['#97AAB3', '#7499FF', '#FFC859', '#FFA059', '#E97659', '#E45959'];
+const severities = ['#40AC2B', '#7499FF', '#FFC859', '#FFA059', '#E97659', '#E45959'];
 
 export const Company = styled.div`
   align-items: center;
@@ -25,8 +25,6 @@ export const Company = styled.div`
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   padding: 10px 10px;
   width: 100%;
 `;
