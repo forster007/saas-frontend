@@ -4,6 +4,7 @@ import { push } from 'connected-react-router';
 
 import API from '../../services/api';
 import AuthActions from '../ducks/auth';
+import ZabbixesActions from '../ducks/zabbixes';
 
 const api = API.create();
 
@@ -29,5 +30,6 @@ export function* signOut() {
   localStorage.removeItem('@SaaS:token');
   localStorage.removeItem('@SaaS:zabbix');
 
+  yield put(ZabbixesActions.selectZabbix(null));
   yield put(push('/signin'));
 }

@@ -1,5 +1,4 @@
 import { createActions, createReducer } from 'reduxsauce';
-import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   getZabbixesRequest: null,
@@ -14,30 +13,37 @@ const { Types, Creators } = createActions({
 export const ZabbixesTypes = Types;
 export default Creators;
 
-const INITIAL_STATE = Immutable({
+const INITIAL_STATE = {
   activeZabbix: JSON.parse(localStorage.getItem('@SaaS:zabbix')) || null,
   data: [],
   zabbixModalOpen: false,
-});
+};
 
-export const success = (state, { data }) => state.merge({
+export const success = (state, { data }) => ({
+  ...state,
   data,
 });
 
 export const selectZabbix = (state, { zabbix }) => {
   localStorage.setItem('@SaaS:zabbix', JSON.stringify(zabbix));
-  return state.merge({ activeZabbix: zabbix });
+  return {
+    ...state,
+    activeZabbix: zabbix,
+  };
 };
 
-export const storeZabbixSuccess = (state, { zabbix }) => state.merge({
+export const storeZabbixSuccess = (state, { zabbix }) => ({
+  ...state,
   data: [...state.data, zabbix],
 });
 
-export const openZabbixModal = state => state.merge({
+export const openZabbixModal = state => ({
+  ...state,
   zabbixModalOpen: true,
 });
 
-export const closeZabbixModal = state => state.merge({
+export const closeZabbixModal = state => ({
+  ...state,
   zabbixModalOpen: false,
 });
 

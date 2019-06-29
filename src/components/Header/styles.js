@@ -3,20 +3,38 @@ import styled from 'styled-components';
 export const Actions = styled.div`
   align-items: center;
   display: flex;
-  justify-content: space-around;
 `;
 
 export const ActionButton = styled.button`
+  align-items: center;
   background-color: #fb3c4a;
   border: 1px solid #fb3c4a;
   border-radius: 2px;
+  display: flex;
+  flex-direction: row;
   height: 30px;
-  transition: all 0.2s;
+  margin-left: 10px;
+  overflow-x: hidden;
+  padding-left: 7px;
+  transition: all 0.3s;
   width: 30px;
 
   &:hover {
     opacity: 0.9;
+    width: ${props => props.maxWidth}px;
   }
+`;
+
+export const ActionButtonText = styled.span`
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  left: 5px;
+  opacity: ${props => (props.hovered ? 1 : 0)};
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s;
+  white-space: nowrap;
 `;
 
 export const Company = styled.div`

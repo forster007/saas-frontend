@@ -1,6 +1,5 @@
 import React from 'react';
 import { createActions, createReducer } from 'reduxsauce';
-import Immutable from 'seamless-immutable';
 import { Priority } from '../../pages/Main/styles';
 
 const { Types, Creators } = createActions({
@@ -13,25 +12,30 @@ export default Creators;
 
 const severities = ['Not classified', 'Information', 'Warning', 'Average', 'High', 'Disaster'];
 
-const INITIAL_STATE = Immutable({
+const INITIAL_STATE = {
   columns: [
     {
-      label: 'Prioridade',
-      name: 'priority',
-      options: {
-        filter: true,
-        customBodyRender: value => <Priority priority={value}>{severities[value]}</Priority>,
+      field: 'priority',
+      headerStyle: {
+        width: 70,
       },
+      render: ({ priority }) => <Priority priority={priority}>{severities[priority]}</Priority>,
+      title: 'Prioridade',
     },
     {
-      name: 'description',
-      label: 'Descrição',
+      field: 'description',
+      title: 'Descrição',
     },
   ],
   data: [],
-});
+  style: {
+    border: '1px solid #ddd',
+    margin: '0 30px 20px 10px',
+  },
+};
 
-export const success = (state, { data }) => state.merge({
+export const success = (state, { data }) => ({
+  ...state,
   data,
 });
 

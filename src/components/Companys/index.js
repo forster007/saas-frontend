@@ -31,18 +31,18 @@ class Companys extends Component {
 
   render() {
     const { zabbixes } = this.props;
-    return (
+    return zabbixes.data.length ? (
       <Container>
         <TitleText>Zabbixes Cadastrados</TitleText>
         <Wrapper>
           {zabbixes.data.map(zabbix => (
             <Company key={zabbix.id} onClick={() => this.handleZabbixSelect(zabbix)}>
-              {zabbix.zbx_name}
+              {zabbix.zbxName}
             </Company>
           ))}
         </Wrapper>
       </Container>
-    );
+    ) : null;
   }
 }
 

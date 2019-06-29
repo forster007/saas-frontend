@@ -33,10 +33,10 @@ class Groups extends Component {
           <WrapperTitle>
             <FontAwesomeIcon icon={faArrowRight} />
             {' '}
-            {zabbixes.activeZabbix.zbx_name}
+            {zabbixes.activeZabbix.zbxName}
           </WrapperTitle>
           <WrapperContent>
-            {zabbixes.activeZabbix.zbx_groups.map(({ groupid, maxTriggerPriority, name }) => (
+            {zabbixes.activeZabbix.zbxGroups.map(({ groupid, maxTriggerPriority, name }) => (
               <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
                 <span>{name}</span>
               </Company>
@@ -46,15 +46,15 @@ class Groups extends Component {
       );
     }
 
-    return zabbixes.data.map(({ id, zbx_groups, zbx_name }) => (
+    return zabbixes.data.map(({ id, zbxGroups, zbxName }) => (
       <Wrapper key={id}>
         <WrapperTitle>
           <FontAwesomeIcon icon={faArrowRight} />
           {' '}
-          {zbx_name}
+          {zbxName}
         </WrapperTitle>
         <WrapperContent>
-          {zbx_groups.map(({ groupid, maxTriggerPriority, name }) => (
+          {zbxGroups.map(({ groupid, maxTriggerPriority, name }) => (
             <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
               <span>{name}</span>
             </Company>
@@ -67,14 +67,14 @@ class Groups extends Component {
   render() {
     const { zabbixes } = this.props;
 
-    return (
+    return zabbixes.data.length ? (
       <Container>
         <TitleText>
           {zabbixes.activeZabbix ? 'Grupos do Zabbix Ativo' : 'Grupos dos Zabbixes'}
         </TitleText>
         {this.renderContent()}
       </Container>
-    );
+    ) : null;
   }
 }
 

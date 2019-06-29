@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Modal from '@material-ui/core/Modal';
 
-export const Container = styled.div`
+export const Container = styled(Modal)`
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -15,7 +16,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   background: #36393f;
   border-radius: 5px;
-  box-shadow: 2 2px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
   padding: 40px;
   width: ${props => (props.size === 'big' ? 600 : 400)}px;
 
