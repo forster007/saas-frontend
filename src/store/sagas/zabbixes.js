@@ -22,20 +22,19 @@ export function* getZabbixes() {
 }
 
 export function* storeZabbix({
-  zbx_name, zbx_url, zbx_user, zbx_pass,
+  zbxName, zbxUrl, zbxUser, zbxPass,
 }) {
   try {
     const { data } = yield call([api, 'STOREZABBIX'], {
-      zbx_name,
-      zbx_url,
-      zbx_user,
-      zbx_pass,
+      zbxName,
+      zbxUrl,
+      zbxUser,
+      zbxPass,
     });
 
     yield put(ZabbixesActions.storeZabbixSuccess(data));
     yield put(ZabbixesActions.closeZabbixModal());
   } catch (err) {
-    console.log(err);
     yield put(
       ToastrActions.add({
         type: 'error',

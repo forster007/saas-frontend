@@ -64,6 +64,16 @@ class Header extends Component {
     signOut();
   };
 
+  handleZabbixStore = (e) => {
+    e.preventDefault();
+    const { storeZabbixRequest } = this.props;
+    const {
+      zbxName, zbxUrl, zbxUser, zbxPass,
+    } = this.state;
+
+    storeZabbixRequest(zbxName, zbxUrl, zbxUser, zbxPass);
+  };
+
   renderCompanyName = () => {
     const { zabbixes } = this.props;
     if (zabbixes.data.length === 0) {

@@ -6,7 +6,7 @@ const { Types, Creators } = createActions({
   selectZabbix: ['zabbix'],
   openZabbixModal: null,
   closeZabbixModal: null,
-  storeZabbixRequest: ['zbx_name', 'zbx_url', 'zbx_user', 'zbx_pass'],
+  storeZabbixRequest: ['zbxName', 'zbxUrl', 'zbxUser', 'zbxPass'],
   storeZabbixSuccess: ['zabbix'],
 });
 
