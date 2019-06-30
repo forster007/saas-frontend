@@ -54,20 +54,17 @@ class Groups extends Component {
           {zbxName}
         </WrapperTitle>
         <WrapperContent>
-          {
-            zbxGroups.length && zbxGroups.map(({ groupid, maxTriggerPriority, name }) => (
+          {zbxGroups.length
+            && zbxGroups.map(({ groupid, maxTriggerPriority, name }) => (
               <Company key={groupid} maxTriggerPriority={maxTriggerPriority}>
                 <span>{name}</span>
               </Company>
-            ))
-          }
-          {
-            !zbxGroups.length && (
-              <Company maxTriggerPriority={0}>
-                <span>Nenhum grupo carregado</span>
-              </Company>
-            )
-          }
+            ))}
+          {!zbxGroups.length && (
+            <Company maxTriggerPriority={0}>
+              <span>Nenhum grupo carregado</span>
+            </Company>
+          )}
         </WrapperContent>
       </Wrapper>
     ));
