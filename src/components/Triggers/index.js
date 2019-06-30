@@ -32,7 +32,7 @@ class Triggers extends Component {
   render() {
     const { triggers, zabbixes } = this.props;
 
-    return triggers.length ? (
+    return triggers.data.length ? (
       <MaterialTable
         columns={triggers.columns}
         components={{
