@@ -8,6 +8,7 @@ const { Types, Creators } = createActions({
   closeZabbixModal: null,
   storeZabbixRequest: ['zbxName', 'zbxUrl', 'zbxUser', 'zbxPass'],
   storeZabbixSuccess: ['zabbix'],
+  storeZabbixError: ['error'],
 });
 
 export const ZabbixesTypes = Types;
@@ -37,6 +38,14 @@ export const storeZabbixSuccess = (state, { zabbix }) => ({
   data: [...state.data, zabbix],
 });
 
+export const storeZabbixError = (state, { zabbix }) => {
+  console.log('E: ', zabbix);
+
+  return {
+    ...state,
+  };
+};
+
 export const openZabbixModal = state => ({
   ...state,
   zabbixModalOpen: true,
@@ -53,4 +62,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.OPEN_ZABBIX_MODAL]: openZabbixModal,
   [Types.CLOSE_ZABBIX_MODAL]: closeZabbixModal,
   [Types.STORE_ZABBIX_SUCCESS]: storeZabbixSuccess,
+  [Types.STORE_ZABBIX_ERROR]: storeZabbixError,
 });

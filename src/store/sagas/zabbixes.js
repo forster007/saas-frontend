@@ -32,15 +32,33 @@ export function* storeZabbix({
       zbxPass,
     });
 
-    yield put(ZabbixesActions.storeZabbixSuccess(data));
-    yield put(ZabbixesActions.closeZabbixModal());
-  } catch (err) {
     yield put(
       ToastrActions.add({
-        type: 'error',
-        title: 'Falha ao criar Zabbix',
-        message: 'Verifique as informações e tente novamente',
+        type: 'success',
+        title: 'Zabbix criado com sucesso',
+        message: 'Seus dados estarão disponíveis em no máximo 5 minutos.',
       }),
     );
+
+    yield put(ZabbixesActions.storeZabbixSuccess(data));
+    yield put(ZabbixesActions.closeZabbixModal());
+  } catch (error) {
+    if (error && error.response && error.response.data && error.response.data.jsonrpc) {
+      yield put(
+        ToastrActions.add({
+          type: 'error',
+          title: error.response.data.error.message,
+          message: error.response.data.error.data,
+        }),
+      );
+    } else {
+      yield put(
+        ToastrActions.add({
+          type: 'error',
+          title: 'Falha ao criar Zabbix',
+          message: 'Verifique as informações e tente novamente',
+        }),
+      );
+    }
   }
 }
